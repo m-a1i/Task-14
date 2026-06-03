@@ -1,0 +1,227 @@
+:root {
+    --gold: #c5a059;
+    --dark: #141414;
+    --bg-light: #fffdfb;
+    --card-bg: #ffffff;
+    --border-color: #e6dfd5;
+    --text-muted: #555555;
+    --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+    background-color: var(--bg-light);
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #222;
+}
+
+.catalog-section {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.catalog-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.catalog-header span {
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.catalog-header h2 {
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin: 6px 0 12px 0;
+}
+
+.catalog-header p {
+    color: var(--text-muted);
+    max-width: 550px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+}
+
+/* --- Responsive Layout Configurations (Desktop Default) --- */
+.responsive-widget-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+}
+
+.desktop-tab-strip {
+    display: flex;
+    background: #faf8f5;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-trigger {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 18px 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-trigger:hover {
+    color: var(--gold);
+    background: rgba(197, 160, 89, 0.03);
+}
+
+.tab-trigger.active-tab {
+    color: var(--dark);
+    border-bottom-color: var(--gold);
+    background: var(--card-bg);
+}
+
+.desktop-content-viewport {
+    padding: 40px;
+    min-height: 280px;
+}
+
+/* Active panel content formatting rules */
+.panel-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.panel-details h3 {
+    font-size: 1.6rem;
+    margin: 0 0 15px 0;
+    color: var(--dark);
+}
+
+.panel-details p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.panel-media img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+/* Hide Mobile Components by default */
+.mobile-accordion-stack {
+    display: none;
+}
+
+/* --- Mobile Breakpoint Optimization Matrix --- */
+@media (max-width: 768px) {
+    /* Kill Desktop Elements Viewports */
+    .desktop-tab-strip, .desktop-content-viewport {
+        display: none !important;
+    }
+    
+    .mobile-accordion-stack {
+        display: block;
+    }
+
+    .accordion-item {
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .accordion-item:last-child {
+        border-bottom: none;
+    }
+
+    .accordion-header {
+        width: 100%;
+        background: #fff;
+        border: none;
+        padding: 20px;
+        text-align: left;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--dark);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+    }
+
+    .accordion-header:hover {
+        background: #faf8f5;
+    }
+
+    .accordion-header .icon-marker {
+        transition: transform 0.3s ease;
+        color: var(--gold);
+        font-weight: bold;
+    }
+
+    /* Accordion Active States */
+    .accordion-item.active-item .accordion-header {
+        background: #faf8f5;
+        color: var(--gold);
+    }
+
+    .accordion-item.active-item .accordion-header .icon-marker {
+        transform: rotate(45deg);
+    }
+
+    /* Collapse Body Management Container */
+    .accordion-body {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        background: #fff;
+    }
+
+    .accordion-inner-content {
+        padding: 20px 20px 30px 20px;
+        border-top: 1px dashed var(--border-color);
+    }
+
+    .panel-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .panel-media img {
+        height: 160px;
+    }
+}
